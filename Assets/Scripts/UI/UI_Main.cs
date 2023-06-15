@@ -21,7 +21,7 @@ public class UI_Main : MonoBehaviour
     [SerializeField] private Image muteIcon;
     [SerializeField] private Image inGameMuteIcon;
 
-    private void Start()
+    public void Init()
     {
         for (int i = 0; i < slider.Length; i++)
         {
@@ -30,8 +30,8 @@ public class UI_Main : MonoBehaviour
 
         SwitchMenuTo(mainMenu);
 
-        lastScoreText.text = "Last score:  " + PlayerPrefs.GetFloat("LastScore").ToString("#,#");
-        highScoreText.text = "High score:  " + PlayerPrefs.GetFloat("HighScore").ToString("#,#");
+        lastScoreText.text = "Last score:  " + GameManager.instance.SaveData.info.lastScore.ToString("#,#");
+        highScoreText.text = "High score:  " + GameManager.instance.SaveData.info.highScore.ToString("#,#");
     }
 
 
@@ -45,7 +45,7 @@ public class UI_Main : MonoBehaviour
         uiMenu.SetActive(true);
 
         AudioManager.instance.PlaySFX(4);
-        coinsText.text = PlayerPrefs.GetInt("Coins").ToString("#,#");
+        coinsText.text = GameManager.instance.SaveData.info.coins.ToString("#,#");
     }
 
     public void SwitchSkyBox(int index)

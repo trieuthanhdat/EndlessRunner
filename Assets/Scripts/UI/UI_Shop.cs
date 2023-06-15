@@ -101,7 +101,7 @@ public class UI_Shop : MonoBehaviour
         {
             int newAmountOfCoins = myCoins - price;
             PlayerPrefs.SetInt("Coins", newAmountOfCoins);
-            coinsText.text = PlayerPrefs.GetInt("Coins").ToString("#,#");
+            coinsText.text = GameManager.instance.SaveData.info.coins.ToString("#,#");
             return true;
         }
         return false;

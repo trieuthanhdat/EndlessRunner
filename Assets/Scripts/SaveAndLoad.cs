@@ -67,32 +67,46 @@ public static class SaveAndLoad<T>
     /// <returns></returns>
     private static string GetFilePath(string FolderName, string FileName = "")
     {
-        string filePath;
+        string filePath = "";
+
+#if UNITY_EDITOR
+    filePath = Path.Combine(Application.dataPath, "StreamingAssets", "data", FolderName);
+
+    if (FileName != "")
+        filePath = Path.Combine(filePath, FileName + ".txt");
+
+#else
+        // Handle other platforms as before
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
         // mac
         filePath = Path.Combine(Application.persistentDataPath, "data", FolderName);
 
         if (FileName != "")
-            filePath = Path.Combine(filePath, (FileName + ".txt"));
+            filePath = Path.Combine(filePath, FileName + ".txt");
+
 #elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
         // windows
-        filePath = Path.Combine(Application.persistentDataPath, "data" , FolderName);
-        if(FileName != "")
-            filePath = Path.Combine(filePath, (FileName + ".txt"));
+        filePath = Path.Combine(Application.persistentDataPath, "data", FolderName);
+        if (FileName != "")
+            filePath = Path.Combine(filePath, FileName + ".txt");
+
 #elif UNITY_ANDROID
         // android
-        filePath = Path.Combine(Application.persistentDataPath, "data" , FolderName);
+        filePath = Path.Combine(Application.persistentDataPath, "data", FolderName);
 
+        if (FileName != "")
+            filePath = Path.Combine(filePath, FileName + ".txt");
 
-        if(FileName != "")
-            filePath = Path.Combine(filePath, (FileName + ".txt"));
 #elif UNITY_IOS
         // ios
-        filePath = Path.Combine(Application.persistentDataPath, "data" , FolderName);
+        filePath = Path.Combine(Application.persistentDataPath, "data", FolderName);
 
         if (!string.IsNullOrEmpty(FileName))
             filePath = Path.Combine(filePath, FileName + ".txt");
 #endif
+
+#endif
+
         return filePath;
     }
 }
