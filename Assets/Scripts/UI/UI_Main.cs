@@ -44,13 +44,15 @@ public class UI_Main : MonoBehaviour
 
         uiMenu.SetActive(true);
 
-        AudioManager.instance.PlaySFX(4);
+        //AudioManager.instance.PlaySFX(4);
+        MonoAudioManager.instance.PlaySound("Click");
         coinsText.text = GameManager.instance.SaveData.info.coins.ToString("#,#");
     }
 
     public void SwitchSkyBox(int index)
     {
-        AudioManager.instance.PlaySFX(4);
+        //AudioManager.instance.PlaySFX(4);
+        MonoAudioManager.instance.PlaySound("Click");
         GameManager.instance.SetupSkyBox(index);
     }
 

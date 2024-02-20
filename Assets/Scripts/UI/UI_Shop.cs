@@ -70,8 +70,8 @@ public class UI_Shop : MonoBehaviour
 
     public void PurchaseColor(Color color, int price, ColorType colorType)
     {
-        AudioManager.instance.PlaySFX(4);
-
+        //AudioManager.instance.PlaySFX(4);
+        MonoAudioManager.instance.PlaySound("Click");
         if (EnoughMoney(price))
         {
             if (colorType == ColorType.platformColor)

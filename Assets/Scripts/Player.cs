@@ -153,7 +153,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator Die()
     {
-        AudioManager.instance.PlaySFX(3);
+        //AudioManager.instance.PlaySFX(3);
+        MonoAudioManager.instance.PlaySound("Die");
         isDead = true;
         canBeKnocked = false;
         rb.velocity = knockbackDir;
@@ -343,7 +344,8 @@ public class Player : MonoBehaviour
     private void Jump(float force)
     {
         dustFx.Play();
-        AudioManager.instance.PlaySFX(Random.Range(1, 2));
+        //AudioManager.instance.PlaySFX(Random.Range(1, 2));
+        MonoAudioManager.instance.PlaySound("Jump"+ Random.Range(1, 2));
         rb.velocity = new Vector2(rb.velocity.x, force);
     }
 
